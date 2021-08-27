@@ -28,7 +28,7 @@ def find_puzzle(frame):
     cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
 
     # initialize a contour that corresponds to the puzzle outline
-    puzzleCnt = None
+    puzzle_cnt = None
 
     # loop over the contours
     for c in cnts:
@@ -51,20 +51,20 @@ def find_puzzle(frame):
             # ensure that the contour passes all our tests
             if keepDims and keepAspectRatio:
                 status = 'Puzzle Found'
-                puzzleCnt = approx
-                cv2.drawContours(frame, [puzzleCnt], -1, (0, 255, 0), 2)
+                puzzle_cnt = approx
+                cv2.drawContours(frame, [puzzle_cnt], -1, (0, 255, 0), 2)
                 break
     
     cv2.putText(frame, status, (35, 35), cv2.FONT_HERSHEY_SIMPLEX, 
         1.2, (0, 0, 255), 2)
 
-    if puzzleCnt is None:
+    if puzzle_cnt is None:
         raise PuzzleNotFoundError()
     
     # obtain a top-down bird's eye view of the puzzle
-    transformed = four_point_transform(gray, puzzleCnt.reshape(4, 2))
+    transformed = four_point_transform(gray, puzzle_cnt.reshape(4, 2))
 
-    return transformed
+    return transformed, puzzle_cnt
 
 def extract_digit(cell):
 
