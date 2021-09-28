@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 
 import argparse
 
-from modules.models.Digitnet import Digitnet
+from modules.models.digitnet import Digitnet
 from modules.models.training_tools import fit_model, plot_loss_acc
 
 # construct argument parser
@@ -14,7 +14,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument('-mp', '--model_path', required=True,
     help='path to output model after training')
 ap.add_argument('-lr', '--l_rate', default=1e-3)
-ap.add_argument('-e', '--epochs', default=10)
+ap.add_argument('-e', '--epochs', default=5)
 ap.add_argument('-bs', '--batch_size', default=64)
 args = vars(ap.parse_args())
 

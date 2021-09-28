@@ -9,8 +9,6 @@ class PuzzleNotFoundError(Exception):
 
 def find_puzzle(frame):
 
-    status = 'Puzzle Not Found'
-
     # convert the image to grayscale and blur it slightly
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (7, 7), 3)
@@ -50,13 +48,9 @@ def find_puzzle(frame):
 
             # ensure that the contour passes all our tests
             if keepDims and keepAspectRatio:
-                status = 'Puzzle Found'
                 puzzle_cnt = approx
                 cv2.drawContours(frame, [puzzle_cnt], -1, (0, 255, 0), 2)
                 break
-    
-    cv2.putText(frame, status, (35, 35), cv2.FONT_HERSHEY_SIMPLEX, 
-        1.2, (0, 0, 255), 2)
 
     if puzzle_cnt is None:
         raise PuzzleNotFoundError()
@@ -64,7 +58,7 @@ def find_puzzle(frame):
     # obtain a top-down bird's eye view of the puzzle
     transformed = four_point_transform(gray, puzzle_cnt.reshape(4, 2))
 
-    return transformed, puzzle_cnt
+    return transformed
 
 def extract_digit(cell):
 
@@ -106,6 +100,3 @@ def extract_digit(cell):
     digit = cv2.bitwise_and(thresh, thresh, mask=mask)
 
     return digit, empty
-
-
-
