@@ -130,8 +130,6 @@ class Puzzle:
             # return true if inversion count is even.
             return (inv_count % 2 == 0)
 
-            #return True
-
     @property
     def solved(self):
         """
@@ -205,11 +203,6 @@ class Puzzle:
                     empty_value and board_flat[i] > board_flat[j]):
                     inv_count += 1
         return inv_count
-
-    def pprint(self):
-        for row in self.board:
-            print(row)
-        print()
 
     def __str__(self):
         return ''.join(map(str, self))
