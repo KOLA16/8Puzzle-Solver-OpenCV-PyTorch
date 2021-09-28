@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-from torchinfo import summary
 
 class Digitnet(nn.Module):
     def __init__(self):

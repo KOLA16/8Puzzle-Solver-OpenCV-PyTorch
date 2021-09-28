@@ -1,5 +1,5 @@
-import torch
 import matplotlib.pyplot as plt
+import torch
 
 def train(model, dataloader, loss_fn, optimizer):
     """ 

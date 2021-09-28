@@ -1,10 +1,12 @@
 import argparse
-import torch
 import time
 from multiprocessing import Process, Queue
+
+import torch
+import numpy as np
 import cv2
 import imutils
-import numpy as np
+
 from modules.puzzles.puzzle_processing import PuzzleNotFoundError
 from modules.puzzles.puzzle_processing import find_puzzle
 from modules.puzzles.puzzle_processing import extract_digit

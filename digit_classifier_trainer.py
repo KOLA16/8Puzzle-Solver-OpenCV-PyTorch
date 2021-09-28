@@ -1,12 +1,12 @@
+import argparse
+
 import torch
 import torch.nn as nn
 import torchvision
 from torchvision.transforms import ToTensor
 from torch.utils.data import DataLoader
 
-import argparse
-
-from modules.models.digitnet import Digitnet
+from modules.models.Digitnet import Digitnet
 from modules.models.training_tools import fit_model, plot_loss_acc
 
 # construct argument parser

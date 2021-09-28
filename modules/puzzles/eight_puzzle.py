@@ -1,5 +1,6 @@
 import itertools
 import collections
+
 import numpy as np
 
 from modules.puzzles.config import solve_return

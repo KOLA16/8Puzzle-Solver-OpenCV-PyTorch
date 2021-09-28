@@ -1,8 +1,9 @@
-from imutils.perspective import four_point_transform
-from skimage.segmentation import clear_border
 import numpy as np
 import imutils
 import cv2
+from imutils.perspective import four_point_transform
+from skimage.segmentation import clear_border
+
 
 class PuzzleNotFoundError(Exception):
     pass
