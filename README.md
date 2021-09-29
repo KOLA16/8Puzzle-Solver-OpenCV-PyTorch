@@ -12,4 +12,4 @@ OpenCV is used to take feed from a webcam, identify a square board, and extract 
 ## Solution Finding
 The whole one module is included which implements and runs the A* search algorithm to find the optimal solution to the puzzle read by a camera. Most of the code is adopted from this [repository](https://github.com/JaneHJY/8_puzzle), but significant changes are implemented to make it work in my project.
 
-https://github.com/KOLA16/8Puzzle-Solver-OpenCV-PyTorch/blob/4da70699bc571c3b7a6fd5f55f0e124dac11fbba/recordings/example_run.mkv
+https://github.com/KOLA16/8Puzzle-Solver-OpenCV-PyTorch/blob/0caa5c897e41bf472cf3ce95e45904f3aadc2866/recordings/example.mp4
