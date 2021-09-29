@@ -84,7 +84,8 @@ class Solver:
         seen = set()
         seen.add(queue[0].state)
         while queue:
-            queue = collections.deque(sorted(list(queue), key=lambda node: node.f))
+            queue = collections.deque(sorted(list(queue), 
+                key=lambda node: node.f))
             node = queue.popleft()
             if node.solved:
                 solve_return = node.path
@@ -101,8 +102,9 @@ class Solver:
 class Puzzle:
     """
     A class representing an '8-puzzle'.
-    - 'board' should be a square list of lists with integer entries 0...width^2 - 1
-       e.g. [[1,2,3],[4,0,6],[7,5,8]]
+    - 'board' should be a square list of lists 
+    with integer entries 0...width^2 - 1
+    e.g. [[1,2,3],[4,0,6],[7,5,8]]
     """
     def __init__(self, board):
         self.width = board.shape[0]
@@ -110,26 +112,26 @@ class Puzzle:
     
     @property
     def valid(self):
-            """
-            Check if a puzzle contains all digits from 0 to 8,
-            digit 9 is not detected, and each digit appears once
-            only
-            """
-            unique = len(np.unique(self.board)) == len(self.board.flatten())
-            nine_detected = 9 in self.board
+        """
+        Check if a puzzle contains all digits from 0 to 8,
+        digit 9 is not detected, and each digit appears once
+        only
+        """
+        unique = len(np.unique(self.board)) == len(self.board.flatten())
+        nine_detected = 9 in self.board
            
-            return unique and not nine_detected
+        return unique and not nine_detected
 
     @property
     def solvable(self):
-            """
-            Check if puzzle is solvable
-            """
-            # Count inversions in given 8 puzzle
-            inv_count = self._get_inv_count(self.board.flatten())
+        """
+        Check if puzzle is solvable
+        """
+        # Count inversions in given 8 puzzle
+        inv_count = self._get_inv_count(self.board.flatten())
  
-            # return true if inversion count is even.
-            return (inv_count % 2 == 0)
+        # return true if inversion count is even.
+        return (inv_count % 2 == 0)
 
     @property
     def solved(self):

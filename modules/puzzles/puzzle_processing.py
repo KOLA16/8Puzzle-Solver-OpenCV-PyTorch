@@ -6,10 +6,17 @@ from skimage.segmentation import clear_border
 
 
 class PuzzleNotFoundError(Exception):
+    """
+    The exception that is raised when find_puzzle method
+    fails to detect the puzzle contour
+    """
     pass
 
 def find_puzzle(frame):
-
+    """
+    Detects a puzzle contour on the video frame returns 
+    a top down bird's eye view of the puzzle
+    """
     # convert the image to grayscale and blur it slightly
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (7, 7), 3)
@@ -62,6 +69,11 @@ def find_puzzle(frame):
     return transformed
 
 def extract_digit(cell):
+    """
+    Extracts a digit contour from a single cell
+    Returns a masked image of a digit
+    It also returns a boolean to indicate if cell is empty or not
+    """
 
     empty = True
 
@@ -86,16 +98,6 @@ def extract_digit(cell):
     c = max(cnts, key=cv2.contourArea)
     mask = np.zeros(thresh.shape, dtype="uint8")
     cv2.drawContours(mask, [c], -1, 255, -1)
-
-    # compute the percentage of masked pixels relative to the total
-    # area of the image
-    (h, w) = thresh.shape
-    percentFilled = cv2.countNonZero(mask) / float(w * h)
-
-    # if less than 3% of the mask is filled then we are looking at
-    # noise and can safely ignore the contour
-    #if percentFilled < 0.03:
-        #return None
     
     # apply the mask to the thresholded cell
     digit = cv2.bitwise_and(thresh, thresh, mask=mask)
