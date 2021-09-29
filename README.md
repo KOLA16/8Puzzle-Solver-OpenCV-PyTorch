@@ -12,5 +12,8 @@ OpenCV is used to take feed from a webcam, identify a square board, and extract 
 ## Solution Finding
 The whole one module is included which implements and runs the A* search algorithm to find the optimal solution to the puzzle read by a camera. Most of the code is adopted from this [repository](https://github.com/JaneHJY/8_puzzle), but significant changes are implemented to make it work in my project.
 
+
+Below you can see an examplar run (it can take up to 30s for the hardest puzzles to be solved)
+
 https://user-images.githubusercontent.com/68119830/135316673-ed8b07c2-4af9-4147-a631-899d1b8a836e.mp4
 
