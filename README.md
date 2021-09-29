@@ -10,6 +10,10 @@ The model is then used to classify digits in the Puzzle board cells.
 OpenCV is used to take feed from a webcam, identify a square board, and extract each individual cell which is then loaded to our pretrained model.
 [PyImageSearch](https://www.pyimagesearch.com/) was very helpful resource and [this](https://www.pyimagesearch.com/2020/08/10/opencv-sudoku-solver-and-ocr/) blog post in particular, which was the inspiration for my project.
 ## Solution Finding
-The whole one module is included which implements and runs the A* search algorithm to find the optimal solution to the puzzle read by a camera. Most of the code is adopted from this [repository](https://github.com/JaneHJY/8_puzzle), but significant changes are implemented to make it work in my project.
+The whole single module is included which implements and runs the A* search algorithm to find the optimal solution to the puzzle read by a camera. Most of the code is adopted from this [repository](https://github.com/JaneHJY/8_puzzle), but significant changes are implemented to make it work in my project.
 
-https://github.com/KOLA16/8Puzzle-Solver-OpenCV-PyTorch/blob/4da70699bc571c3b7a6fd5f55f0e124dac11fbba/recordings/example_run.mkv
+
+Below you can see an examplar run (it can take up to 30s for the hardest puzzles to be solved)
+
+https://user-images.githubusercontent.com/68119830/135316673-ed8b07c2-4af9-4147-a631-899d1b8a836e.mp4
+
