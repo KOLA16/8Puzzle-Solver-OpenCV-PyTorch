@@ -12,6 +12,38 @@ OpenCV is used to take feed from a webcam, identify a square board, and extract 
 ## Solution Finding
 The whole single module is included which implements and runs the A* search algorithm to find the optimal solution to the puzzle read by a camera. Most of the code is adopted from this [repository](https://github.com/JaneHJY/8_puzzle), but significant changes are implemented to make it work in my project.
 
+## Running the application
+* if you wish to retrain the digit classifier you run it from the root project directory using the following command: 
+  ```
+  python digit_classifier_trainer.py -mp 'path' -lr 'learning_rate' -e 'epochs' -bs 'batch_size'
+  ```
+  e.g. 
+  ```
+  python digit_classifier_trainer.py -mp output/digit_classifier.pth -lr 0.001 -e 10 -bs 32
+  ```
+  where 
+  - mp is the path to output the model after training
+  - the other arguments are optional learning hyperparameters
+
+* to run the application you run the following command from the root project directory:
+  ```
+  python runner.py -m 'path'
+  ```
+  e.g. 
+  ```
+  python runner.py -m output/digit_classifier.pth
+  ```
+  where
+  - m is the path to file containing classifier model,
+
+
+    
+
+  
+ 
+  
+  
+
 
 Below you can see an examplar run (it can take up to 30s for the hardest puzzles to be solved)
 
