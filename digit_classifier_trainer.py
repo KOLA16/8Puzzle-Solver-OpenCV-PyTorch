@@ -1,3 +1,10 @@
+"""
+digit_classifier_trainer.py
+
+The module which runs training of our digit classifier and
+saves the trained model for later use.
+"""
+
 import argparse
 
 import torch

@@ -1,3 +1,11 @@
+"""
+eight_puzzle.py
+
+Contains a class for representing an 8-puzzle
+and solver classes that define solving functions.
+
+"""
+
 import itertools
 import collections
 

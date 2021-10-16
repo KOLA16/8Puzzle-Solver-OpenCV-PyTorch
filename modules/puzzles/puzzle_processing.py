@@ -1,9 +1,16 @@
+"""
+puzzle_processing.py
+
+Defines functions responsible for detecting, processing a puzzle,
+and extracting puzzle's cells.
+
+"""
+
 import numpy as np
 import imutils
 import cv2
 from imutils.perspective import four_point_transform
 from skimage.segmentation import clear_border
-
 
 class PuzzleNotFoundError(Exception):
     """

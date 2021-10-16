@@ -1,3 +1,11 @@
+"""
+training_tools.py
+
+Defines functions for training a model and 
+function for plotting train/val accuracy/loss.
+
+"""
+
 import matplotlib.pyplot as plt
 import torch
 

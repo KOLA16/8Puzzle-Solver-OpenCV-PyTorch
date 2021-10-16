@@ -1,3 +1,10 @@
+"""
+Digitnet.py
+
+The CNN model.
+
+"""
+
 import torch
 import torch.nn as nn
 

@@ -1,3 +1,13 @@
+"""
+runner.py
+
+The main module of the application.
+It is responsible for starting the programme, taking feed from 
+a camera, displaying the stream window and handling user's inputs.
+It calls modules that process the camera feed and solve a detected
+puzzle. It uses a pretrained CNN model to label digits.
+"""
+
 import argparse
 import time
 from multiprocessing import Process, Queue
@@ -121,7 +131,7 @@ def main():
     # initialize a list of processes that are running
     processes = []
 
-    # initialize list to store consecutive board states of 
+    # initialize a list to store consecutive board states of 
     # the calculated solution
     solution_boards = []
 
@@ -152,8 +162,8 @@ def main():
             
             key = cv2.waitKey(1) & 0xFF
             
-            # if n pressed a and solution states list is not empty,
-            # display following states.
+            # if n pressed and solution states list is not empty,
+            # display consecutive states.
             # if the final state is being displayed, pressing n enables
             # scanning new puzzle
             if key == ord('n') and solution_boards: 
@@ -178,7 +188,7 @@ def main():
             
             display_board(scanned_board, frame)
             
-            # put message to user
+            # put message to a user
             cv2.putText(frame, message, (20, 35),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 225, 0), 2)
 
@@ -217,7 +227,7 @@ def main():
             
             key = cv2.waitKey(1) & 0xFF
 
-            # if n pressed a and solution states list is not empty,
+            # if n pressed and solution states list is not empty,
             # display following states.
             # if the final state is being displayed, pressing n enables
             # scanning new puzzle
@@ -243,7 +253,7 @@ def main():
                 
             display_board(scanned_board, frame)
             
-            # put message to user
+            # put message to a user
             cv2.putText(frame, message, (20, 35),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 225, 0), 2)
 
