@@ -8,6 +8,7 @@ The CNN model.
 import torch
 import torch.nn as nn
 
+
 class Digitnet(nn.Module):
     def __init__(self):
         super(Digitnet, self).__init__()
@@ -30,6 +31,7 @@ class Digitnet(nn.Module):
             nn.Linear(288, 10),
             nn.LogSoftmax(dim=1)
         )
+
     
     def forward(self, x):
         x = self.features(x)

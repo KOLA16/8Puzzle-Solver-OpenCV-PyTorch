@@ -9,6 +9,7 @@ function for plotting train/val accuracy/loss.
 import matplotlib.pyplot as plt
 import torch
 
+
 def train(model, dataloader, loss_fn, optimizer):
     """ 
     Defines single training epoch. 
@@ -38,6 +39,7 @@ def train(model, dataloader, loss_fn, optimizer):
 
     return total_loss.item()/size, acc.item()/size
 
+
 def validate(model, dataloader, loss_fn):
     """ 
     Returns the average validation set loss,
@@ -60,6 +62,7 @@ def validate(model, dataloader, loss_fn):
     
     return loss.item()/size, acc.item()/size
 
+
 def fit_model(model, train_loader, val_loader, optimizer, loss_fn, epochs=5):
     """ 
     Initializes model learning. Returns a dictionary with the average 
@@ -77,6 +80,7 @@ def fit_model(model, train_loader, val_loader, optimizer, loss_fn, epochs=5):
         hist['val_loss'].append(vl)
         hist['val_acc'].append(va)
     return hist
+    
 
 def plot_loss_acc(hist):
     """ Plots accuracy and loss metrics over epochs. """

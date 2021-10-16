@@ -12,16 +12,19 @@ import cv2
 from imutils.perspective import four_point_transform
 from skimage.segmentation import clear_border
 
+
 class PuzzleNotFoundError(Exception):
     """
     The exception that is raised when find_puzzle method
     fails to detect the puzzle contour
     """
+
     pass
+
 
 def find_puzzle(frame):
     """
-    Detects a puzzle contour on the video frame returns 
+    Detects a puzzle contour on the video frame returns
     a top down bird's eye view of the puzzle
     """
     # convert the image to grayscale and blur it slightly
@@ -29,14 +32,15 @@ def find_puzzle(frame):
     blurred = cv2.GaussianBlur(gray, (7, 7), 3)
 
     # apply adaptive thresholding and then invert the threshold map
-    thresh = cv2.adaptiveThreshold(blurred, 255,
-        cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+    thresh = cv2.adaptiveThreshold(
+        blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2
+    )
     thresh = cv2.bitwise_not(thresh)
 
     # find contours in the thresholded image and sort them by size in
     # descending order
-    cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
-        cv2.CHAIN_APPROX_SIMPLE)
+    cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, 
+                                cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
     cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
 
@@ -52,12 +56,12 @@ def find_puzzle(frame):
         # ensure that the approximated contour is rectangular
         if len(approx) == 4:
             # compute the bounding box of the approximated contour and
-			# use the bounding box to compute the aspect ratio
+            # use the bounding box to compute the aspect ratio
             (x, y, w, h) = cv2.boundingRect(approx)
             aspectRatio = w / float(h)
-            
+
             # compute whether or not the width and height, and
-			# aspect ratio of the contour falls within appropriate bounds
+            # aspect ratio of the contour falls within appropriate bounds
             keepDims = w > 45 and h > 45
             keepAspectRatio = aspectRatio >= 0.8 and aspectRatio <= 1.2
 
@@ -69,11 +73,12 @@ def find_puzzle(frame):
 
     if puzzle_cnt is None:
         raise PuzzleNotFoundError()
-    
+
     # obtain a top-down bird's eye view of the puzzle
     transformed = four_point_transform(gray, puzzle_cnt.reshape(4, 2))
 
     return transformed
+
 
 def extract_digit(cell):
     """
@@ -86,26 +91,26 @@ def extract_digit(cell):
 
     # apply automatic thresholding to the cell and then clear any
     # connected borders that touch the border of the cell
-    thresh = cv2.threshold(cell, 0, 255,
-        cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+    thresh = cv2.threshold(cell, 0, 255, 
+                                cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
     thresh = clear_border(thresh)
 
     # find contours in the thresholded cell
-    cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
-        cv2.CHAIN_APPROX_SIMPLE)
+    cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, 
+                                cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
-    
+
     # if no contours were found than this is an empty cell
     if len(cnts) == 0:
         return None, empty
-    
+
     # otherwise, find the largest contour in the cell and create a
     # mask for the contour
     empty = False
     c = max(cnts, key=cv2.contourArea)
     mask = np.zeros(thresh.shape, dtype="uint8")
     cv2.drawContours(mask, [c], -1, 255, -1)
-    
+
     # apply the mask to the thresholded cell
     digit = cv2.bitwise_and(thresh, thresh, mask=mask)
 
