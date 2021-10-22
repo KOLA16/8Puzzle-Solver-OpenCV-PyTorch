@@ -1,4 +1,4 @@
-# 8Puzzle-Solver-OpenCV-PyTorch
+# Computer-Vision-8-Puzzle-Solver
 
 Computer vision system that recognizes 8-Puzzle board and solves it using A* pathfinding algorithm.
 
@@ -42,10 +42,12 @@ The whole single module is included which implements and runs the A* search algo
   
  
   
-  
+
+Below you can see an examplar run 
 
 
-Below you can see an examplar run (it can take up to 30s for the hardest puzzles to be solved)
 
-https://user-images.githubusercontent.com/68119830/135316673-ed8b07c2-4af9-4147-a631-899d1b8a836e.mp4
+
+https://user-images.githubusercontent.com/68119830/138456944-cf97e0fb-054c-4020-b141-8fda9167943a.mp4
+
 
