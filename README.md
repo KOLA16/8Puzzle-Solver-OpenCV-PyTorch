@@ -2,9 +2,9 @@
 
 Computer vision system that recognizes 8-Puzzle board and solves it using A* pathfinding algorithm.
 
-The programme is build on the three main elements:
+The programme is build of the three main elements:
 ## Digit Recognition
-I build a Convolutional Neural Network model from scratch using PyTorch and trained it on MNIST dataset to recognized digits from 0 to 9 with over 99% accuracy.
+I built a Convolutional Neural Network model from scratch using PyTorch and trained it on MNIST dataset to recognized digits from 0 to 9 with over 99% accuracy.
 The model is then used to classify digits in the Puzzle board cells.
 ## Computer Vision
 OpenCV is used to take feed from a webcam, identify a square board, and extract each individual cell which is then loaded to our pretrained model.
